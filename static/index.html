@@ -157,8 +157,8 @@
 
 			<h5 style="color: rgb(212, 209, 209);">Concert Dates with Locations:</h5>
             <div class="concertDates">
-              {{range $dateAndLocation := $element.Rels.DatesLocations}}
-              <p>{{$dateAndLocation}}</p>
+              {{range $city, $dateAndLocation := $element.Rels.DatesLocations}}
+              <p>{{$city}}:<br>{{range $innerDate := $dateAndLocation}}{{$innerDate}}<br>{{end}}</p>
               {{end}}
 			</div>
           </div>
