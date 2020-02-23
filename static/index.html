@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue"></script>
+    <title>Groupie Tracker</title>
+  </head>
+  <style>
+    body {
+      font-family: "Roboto", sans-serif;
+      background: #fff;
+    }
+
+    .conatiner {
+      width: 100%;
+      height: 700px;
+    }
+    .wrap {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+      flex-direction: row;
+    }
+
+    .box {
+      margin: 10px;
+      width: 500px;
+      height: 1050px;
+      text-align: center;
+      border-radius: 3px;
+      -webkit-transition: 200ms ease-in-out;
+      -o-transition: 200ms ease-in-out;
+      transition: 200ms ease-in-out;
+      -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+    .box:hover {
+      margin-bottom: -10px;
+      -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+    }
+    .box h1 {
+      color: #fff;
+      padding: 30px;
+      text-align: center;
+      font-weight: 100;
+      font-size: 25px;
+      height: 50px;
+      background: rgba(0, 0, 0, 0.8);
+      -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+    }
+
+    .date h4 {
+      color: #fff;
+      font-weight: 100;
+      text-align: center;
+      letter-spacing: 3px;
+      text-shadow: 0 0 3px rgba(0, 0, 0, 0.9);
+    }
+    .poster {
+      width: 130px;
+      height: 130px;
+      margin: 120px auto;
+      position: relative;
+      border-radius: 100px;
+    }
+    .poster h4 {
+      top: 16px;
+      color: #fff;
+      position: relative;
+      font-size: 80px;
+      text-align: center;
+      font-weight: 100;
+    }
+    .one {
+      background: rgb(95, 95, 95);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    @-webkit-keyframes rotation {
+      from {
+        -webkit-transform: rotate(0deg);
+      }
+      to {
+        -webkit-transform: rotate(359deg);
+      }
+    }
+    .members {
+		border: 1px solid gray;
+      margin: 4px, 4px;
+      padding: 4px;
+      width: 97%;
+      height: 50px;
+      overflow-x: hidden;
+      overflow-x: auto;
+      text-align: justify;
+      color: rgb(194, 189, 189);
+    }
+	.concertDates {
+		border: 1px solid gray;
+      margin: 4px, 4px;
+      padding: 4px;
+      width: 97%;
+      height: 100px;
+      overflow-x: hidden;
+      overflow-x: auto;
+      text-align: justify;
+      color: rgb(194, 189, 189);
+    }
+  </style>
+
+  <body id="app">
+    <div class="conatiner">
+      <div class="wrap">
+        {{range $element := .Artists}}
+        <div class="box one">
+          <br />
+          <img src="{{$element.Image}}" alt="" />
+          <div class="date">
+            <h4>Creation Date: {{$element.CreationDate}}</h4>
+            <h4>First Album: {{$element.FirstAlbum}}</h4>
+            <h5 style="color: rgb(212, 209, 209);">Members:</h5>
+            <div class="members">
+              {{range $member := $element.Members}}
+              <p>{{$member}}</p>
+              {{end}}
+            </div>
+            <h5 style="color: rgb(212, 209, 209);">Locations:</h5>
+            <div class="members">
+              {{range $location := $element.Locs.Locations}}
+              <p>{{$location}}</p>
+              {{end}}
+			</div>
+
+			<h5 style="color: rgb(212, 209, 209);">Concert Dates:</h5>
+            <div class="concertDates">
+              {{range $date := $element.ConDates.Dates}}
+              <p>{{$date}}</p>
+              {{end}}
+			</div>
+
+
+			<h5 style="color: rgb(212, 209, 209);">Concert Dates with Locations:</h5>
+            <div class="concertDates">
+              {{range $dateAndLocation := $element.Rels.DatesLocations}}
+              <p>{{$dateAndLocation}}</p>
+              {{end}}
+			</div>
+          </div>
+          <h1>{{$element.Name}}</h1>
+        </div>
+        {{end}}
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
