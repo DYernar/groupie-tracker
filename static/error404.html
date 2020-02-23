@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>groupie-tracker</title>
+</head>
+<style>
+    body {
+      font-family: "Roboto", sans-serif;
+      background: rgb(233, 232, 213);
+      margin: 0;
+      -webkit-animation: background 5s cubic-bezier(1,0,0,1) infinite;
+    animation: background 10s cubic-bezier(1,0,0,1) infinite;  
+    }
+    @-webkit-keyframes background {
+        0% { background-color: rgb(255, 169, 169); }
+        10% { background-color: rgb(255, 186, 181); }
+        20% { background-color: rgb(250, 216, 177); }
+        30% { background-color: rgb(255, 242, 185); }
+        40% { background-color: rgb(226, 255, 173); }
+        50% { background-color: rgb(183, 255, 183); }
+        60% { background-color: rgb(138, 255, 216); }
+        70% { background-color: rgb(171, 250, 246); }  
+        80% { background-color: rgb(155, 224, 252); }
+        90% { background-color: rgb(162, 197, 250); }
+        100% { background-color: rgb(189, 182, 252); }
+}
+
+@keyframes background {
+    0% { background-color: rgb(255, 169, 169); }
+        10% { background-color: rgb(255, 186, 181); }
+        20% { background-color: rgb(250, 216, 177); }
+        30% { background-color: rgb(255, 242, 185); }
+        40% { background-color: rgb(226, 255, 173); }
+        50% { background-color: rgb(183, 255, 183); }
+        60% { background-color: rgb(138, 255, 216); }
+        70% { background-color: rgb(171, 250, 246); }  
+        80% { background-color: rgb(155, 224, 252); }
+        90% { background-color: rgb(162, 197, 250); }
+        100% { background-color: rgb(189, 182, 252); }
+}
+    .main-div {
+        width: 100%;
+        height: 200px;
+    }
+    .inner-div {
+        max-width: 80%;
+        height: fit-content;
+        background: rgb(95, 95, 95);
+        border-radius: 5px;
+        padding-top: 55px;
+        padding-bottom: 20px;
+        opacity: 0.8;
+
+    }
+    .back{
+        text-decoration: none;
+        color: rgb(194, 194, 194);
+    }
+    .main-menu{
+      width: 100%;
+      height: fit-content;
+      margin-bottom: 50px;
+      align-items: center;
+    }
+    .inner-menu{
+      width: 100%;
+      height: 100%;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      background: rgb(95, 95, 95);
+      -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+</style>
+<body align="center">
+    <div class="main-menu" align="center">
+        <div class="inner-menu" align="center">
+          <h1>Groupie tracker</h1>
+          <h3>Find your artists and their locations</h3>
+          <div class="search">
+            <form action="/post" method="post">
+              <input type="text" placeholder="artist name">
+              <button>Go</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    <div class="main-div" align="center">
+        <div class="inner-div">
+            <h1>Error 404</h1>
+            <h2>Page not found!</h2>
+            <h3>Sorry! but the page you'r searching for doesn't exists!</h3>
+            <a class="back" href="/">Go to the main page ----> </a>
+
+        </div>
+    </div>
+</body>
+</html>

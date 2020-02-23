@@ -153,8 +153,15 @@ func mainPage(w http.ResponseWriter, r *http.Request) {
 		}
 	} else {
 		w.Header().Set("Content-Type", "text/html")
+		t, err := template.ParseFiles("static/error404.html")
+		if err != nil {
+			w.WriteHeader(500)
+			fmt.Fprintf(w, "<h1>500 Internal server Error!</h1>")
+			return;
+		}
 		w.WriteHeader(404)
-		fmt.Fprintf(w, "<h1>404 Page not found!</h1>")
+		t.Execute(w, nil)
+
 	}
 
 }
