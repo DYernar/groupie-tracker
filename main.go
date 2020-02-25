@@ -18,6 +18,7 @@ import(
 
 type RetVal struct {
 	Artists []Artist
+	Option []string
 }
 
 type Artist struct{
@@ -63,6 +64,7 @@ type Relation struct {
 }
 
 
+var Option = []string{"no filter", "band/artist", "member", "creation date", "first album", "location"}
 
 
 
@@ -197,41 +199,113 @@ func ArrContains(arr []Artist, artist Artist) bool {
 }
 
 ///---------------search result////
-func GetByHint(hint string) []Artist {
+func GetByHint(hint string, searchType string) []Artist {
+	fmt.Print(searchType)
+
 	var returnList []Artist
-	for _, artist := range fullData {
-		if strings.Contains(artist.Name, hint) {
-			if !ArrContains(returnList, artist){
-				returnList = append(returnList, artist)
+
+	if searchType == "no filter" {
+		for _, artist := range fullData {
+			if strings.Contains(artist.Name, hint) {
+				if !ArrContains(returnList, artist){
+					returnList = append(returnList, artist)
+				}
+			}
+			if strings.Contains(strings.ToLower(artist.Name), strings.ToLower(hint)) {
+				if !ArrContains(returnList, artist){
+					returnList = append(returnList, artist)
+				}
+			}
+			for _, member := range artist.Members {
+				if strings.Contains(member, hint) {
+					if !ArrContains(returnList, artist){
+						returnList = append(returnList, artist)
+					}
+				}
+				if strings.Contains(strings.ToLower(member), strings.ToLower(hint)) {
+					if !ArrContains(returnList, artist){
+						returnList = append(returnList, artist)
+					}
+				}
+			}
+	
+			for _, location := range artist.Locs.Locations {
+				if strings.Contains(location, hint) {
+					if !ArrContains(returnList, artist){
+						returnList = append(returnList, artist)
+					}
+				}
+			}
+	
+			if strings.Contains(strconv.Itoa(artist.CreationDate), hint) {
+				if !ArrContains(returnList, artist){
+					returnList = append(returnList, artist)
+				}
+			}
+			if strings.Contains(artist.FirstAlbum, hint) {
+				if !ArrContains(returnList, artist){
+					returnList = append(returnList, artist)
+				}
 			}
 		}
+	} else if searchType == "band/artist" {
+
+		for _, artist := range fullData {
+			if strings.Contains(artist.Name, hint) {
+				if !ArrContains(returnList, artist){
+					returnList = append(returnList, artist)
+				}
+			}
+			if strings.Contains(strings.ToLower(artist.Name), strings.ToLower(hint)) {
+				if !ArrContains(returnList, artist){
+					returnList = append(returnList, artist)
+				}
+			}
+		}
+	} else if searchType == "member" {
+		for _, artist := range fullData {
+
 		for _, member := range artist.Members {
 			if strings.Contains(member, hint) {
 				if !ArrContains(returnList, artist){
 					returnList = append(returnList, artist)
 				}
 			}
-		}
-
-		for _, location := range artist.Locs.Locations {
-			if strings.Contains(location, hint) {
+			if strings.Contains(strings.ToLower(member), strings.ToLower(hint)) {
 				if !ArrContains(returnList, artist){
 					returnList = append(returnList, artist)
 				}
 			}
 		}
-
-		if strings.Contains(strconv.Itoa(artist.CreationDate), hint) {
-			if !ArrContains(returnList, artist){
-				returnList = append(returnList, artist)
+	}
+	} else if searchType == "creation date" {
+		for _, artist := range fullData {
+			if strings.Contains(strconv.Itoa(artist.CreationDate), hint) {
+				if !ArrContains(returnList, artist){
+					returnList = append(returnList, artist)
+				}
 			}
 		}
-		if strings.Contains(artist.FirstAlbum, hint) {
-			if !ArrContains(returnList, artist){
-				returnList = append(returnList, artist)
+	} else if searchType == "first album" {
+		for _, artist := range fullData {
+			if strings.Contains(artist.FirstAlbum, hint) {
+				if !ArrContains(returnList, artist){
+					returnList = append(returnList, artist)
+				}
+			}
+		}
+	} else if searchType == "location" {
+		for _, artist := range fullData {
+			for _, location := range artist.Locs.Locations {
+				if strings.Contains(location, hint) {
+					if !ArrContains(returnList, artist){
+						returnList = append(returnList, artist)
+					}
+				}
 			}
 		}
 	}
+
 	return returnList
 }
 /////////////////////
@@ -251,6 +325,7 @@ func mainPage(w http.ResponseWriter, r *http.Request) {
 
 			
 			returnValue.Artists = allData
+			returnValue.Option = Option
 			t, tempErr := template.ParseFiles("static/index.html")
 			if tempErr != nil {
 				w.WriteHeader(500)
@@ -262,9 +337,11 @@ func mainPage(w http.ResponseWriter, r *http.Request) {
 		} else if r.Method == "POST" {
 			r.ParseForm()
 			data := r.FormValue("searchText")
-			searchReasult := GetByHint(data)
+			searchType := r.FormValue("searchType")
+			searchReasult := GetByHint(data, searchType)
 			var searchReturn RetVal
 			searchReturn.Artists = searchReasult
+			searchReturn.Option = Option
 			t, tempErr := template.ParseFiles("static/search.html")
 			if tempErr != nil {
 				w.WriteHeader(500)

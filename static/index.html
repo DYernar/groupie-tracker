@@ -212,6 +212,11 @@
               {{end}}
               
             </datalist>
+            <select name="searchType" id="searchType">
+              {{range $option := .Option}}
+              <option value={{$option}}>{{$option}}</option>
+              {{end}}
+            </select>
             <button>Go</button>
           </form>
         </div>
