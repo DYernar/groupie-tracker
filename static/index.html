@@ -175,21 +175,57 @@
       -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
     }
+    .header-text{
+      text-decoration: underline;
+      color: #fff;
+    }
   </style>
 
   <body>
     <div class="main-menu" align="center">
       <div class="inner-menu" align="center">
-        <h1>Groupie tracker</h1>
+        <h1><a href="/" class="header-text">Groupie tracker</a></h1>
         <h3>Find your artists and their locations</h3>
         <div class="search">
-          <form action="/post" method="post">
-            <input type="text" placeholder="artist name">
+          <form action="/" method="post">
+            <input type="searchText" list="allList" placeholder="search ..." name="searchText">
+            <datalist id = "allList">
+              {{range $element := .Artists}}
+              <option value={{$element.Name}}>{{$element.Name}} - Band</option>
+                <!-- members -->
+                {{range $members := $element.Members}}
+                <option value={{$members}}>{{$members}} - Member</option>
+                {{end}}
+
+                <!-- Locations -->
+
+                {{range $locations := $element.Locs.Locations}}
+                <option value={{$locations}}>{{$locations}} - Location</option>
+                {{end}}
+
+                <!-- first album -->
+                <option value={{$element.FirstAlbum}}>{{$element.FirstAlbum}} - first album</option>
+
+                <!-- creation date -->
+                <option value={{$element.CreationDate}}>{{$element.CreationDate}} - creation date</option>
+
+              {{end}}
+              
+            </datalist>
             <button>Go</button>
           </form>
         </div>
       </div>
     </div>
+
+    {{if not .Artists}}
+    <div class="container">
+      <div class="wrap">
+        <h1>No band is found</h1>
+      </div>
+    </div>
+    {{else}}
+
     <div class="conatiner">
       <div class="wrap">
         {{range $element := .Artists}}
@@ -232,7 +268,7 @@
         {{end}}
       </div>
     </div>
-
+{{end}}
     <script src="app.js"></script>
   </body>
 </html>
