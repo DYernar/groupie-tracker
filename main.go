@@ -206,23 +206,23 @@ func GetByHint(hint string, searchType string) []Artist {
 
 	if searchType == "no filter" {
 		for _, artist := range fullData {
-			if strings.Contains(artist.Name, hint) {
+			if strings.HasPrefix(artist.Name, hint) {
 				if !ArrContains(returnList, artist){
 					returnList = append(returnList, artist)
 				}
 			}
-			if strings.Contains(strings.ToLower(artist.Name), strings.ToLower(hint)) {
+			if strings.HasPrefix(strings.ToLower(artist.Name), strings.ToLower(hint)) {
 				if !ArrContains(returnList, artist){
 					returnList = append(returnList, artist)
 				}
 			}
 			for _, member := range artist.Members {
-				if strings.Contains(member, hint) {
+				if strings.HasPrefix(member, hint) {
 					if !ArrContains(returnList, artist){
 						returnList = append(returnList, artist)
 					}
 				}
-				if strings.Contains(strings.ToLower(member), strings.ToLower(hint)) {
+				if strings.HasPrefix(strings.ToLower(member), strings.ToLower(hint)) {
 					if !ArrContains(returnList, artist){
 						returnList = append(returnList, artist)
 					}
@@ -251,12 +251,12 @@ func GetByHint(hint string, searchType string) []Artist {
 	} else if searchType == "band/artist" {
 
 		for _, artist := range fullData {
-			if strings.Contains(artist.Name, hint) {
+			if strings.HasPrefix(artist.Name, hint) {
 				if !ArrContains(returnList, artist){
 					returnList = append(returnList, artist)
 				}
 			}
-			if strings.Contains(strings.ToLower(artist.Name), strings.ToLower(hint)) {
+			if strings.HasPrefix(strings.ToLower(artist.Name), strings.ToLower(hint)) {
 				if !ArrContains(returnList, artist){
 					returnList = append(returnList, artist)
 				}
@@ -266,12 +266,12 @@ func GetByHint(hint string, searchType string) []Artist {
 		for _, artist := range fullData {
 
 		for _, member := range artist.Members {
-			if strings.Contains(member, hint) {
+			if strings.HasPrefix(member, hint) {
 				if !ArrContains(returnList, artist){
 					returnList = append(returnList, artist)
 				}
 			}
-			if strings.Contains(strings.ToLower(member), strings.ToLower(hint)) {
+			if strings.HasPrefix(strings.ToLower(member), strings.ToLower(hint)) {
 				if !ArrContains(returnList, artist){
 					returnList = append(returnList, artist)
 				}
@@ -374,7 +374,7 @@ func mainPage(w http.ResponseWriter, r *http.Request) {
 func main(){
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "9090"
+		port = "8080"
 	}
 	http.HandleFunc("/", mainPage)
 	err := http.ListenAndServe(":"+port, nil)
