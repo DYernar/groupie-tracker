@@ -243,6 +243,10 @@
       <div class="wrap">
         {{range $element := .Artists}}
         <div class="box one">
+          <form action="/artist" method="GET">
+            <input type="hidden" name="ID" value={{.ID}} />
+            <button>Go</button>
+          </form>
           <br />
           <img src="{{$element.Image}}" alt="" />
           <div class="date">

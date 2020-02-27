@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        margin: 0px;
+        font-family: "Roboto", sans-serif;
+        background: rgb(233, 232, 213);
+        -webkit-animation: background 5s cubic-bezier(1, 0, 0, 1) infinite;
+        animation: background 10s cubic-bezier(1, 0, 0, 1) infinite;
+    }
+
+    @-webkit-keyframes background {
+        0% {
+            background-color: rgb(255, 169, 169);
+        }
+
+        10% {
+            background-color: rgb(255, 186, 181);
+        }
+
+        20% {
+            background-color: rgb(250, 216, 177);
+        }
+
+        30% {
+            background-color: rgb(255, 242, 185);
+        }
+
+        40% {
+            background-color: rgb(226, 255, 173);
+        }
+
+        50% {
+            background-color: rgb(183, 255, 183);
+        }
+
+        60% {
+            background-color: rgb(138, 255, 216);
+        }
+
+        70% {
+            background-color: rgb(171, 250, 246);
+        }
+
+        80% {
+            background-color: rgb(155, 224, 252);
+        }
+
+        90% {
+            background-color: rgb(162, 197, 250);
+        }
+
+        100% {
+            background-color: rgb(189, 182, 252);
+        }
+    }
+
+    @keyframes background {
+        0% {
+            background-color: rgb(255, 169, 169);
+        }
+
+        10% {
+            background-color: rgb(255, 186, 181);
+        }
+
+        20% {
+            background-color: rgb(250, 216, 177);
+        }
+
+        30% {
+            background-color: rgb(255, 242, 185);
+        }
+
+        40% {
+            background-color: rgb(226, 255, 173);
+        }
+
+        50% {
+            background-color: rgb(183, 255, 183);
+        }
+
+        60% {
+            background-color: rgb(138, 255, 216);
+        }
+
+        70% {
+            background-color: rgb(171, 250, 246);
+        }
+
+        80% {
+            background-color: rgb(155, 224, 252);
+        }
+
+        90% {
+            background-color: rgb(162, 197, 250);
+        }
+
+        100% {
+            background-color: rgb(189, 182, 252);
+        }
+    }
+
+    .conatiner {
+        width: 100%;
+        height: 700px;
+    }
+
+    .wrap {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+    }
+
+    .box {
+        margin: 10px;
+        width: 1500px;
+        height: fit-content;
+        text-align: center;
+        border-radius: 3px;
+        -webkit-transition: 200ms ease-in-out;
+        -o-transition: 200ms ease-in-out;
+        transition: 200ms ease-in-out;
+        -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .box:hover {
+        margin-bottom: -10px;
+        -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+    }
+
+    .box h1 {
+        color: #fff;
+        padding: 30px;
+        text-align: center;
+        font-weight: 100;
+        font-size: 25px;
+        height: 50px;
+        background: rgba(0, 0, 0, 0.8);
+        -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+    }
+
+    .date h4 {
+        color: #fff;
+        font-weight: 100;
+        text-align: center;
+        letter-spacing: 3px;
+        text-shadow: 0 0 3px rgba(0, 0, 0, 0.9);
+    }
+
+    .poster {
+        width: 130px;
+        height: 130px;
+        margin: 120px auto;
+        position: relative;
+        border-radius: 100px;
+    }
+
+    .poster h4 {
+        top: 16px;
+        color: #fff;
+        position: relative;
+        font-size: 80px;
+        text-align: center;
+        font-weight: 100;
+    }
+
+    .one {
+        background: rgb(95, 95, 95);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    @-webkit-keyframes rotation {
+        from {
+            -webkit-transform: rotate(0deg);
+        }
+
+        to {
+            -webkit-transform: rotate(359deg);
+        }
+    }
+
+
+    .main-menu {
+        text-align: center;
+        border-radius: 3px;
+        -webkit-transition: 200ms ease-in-out;
+        -o-transition: 200ms ease-in-out;
+        transition: 200ms ease-in-out;
+        -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        width: 100%;
+        height: fit-content;
+        margin-bottom: 50px;
+        align-items: center;
+    }
+
+    .inner-menu {
+        width: 100%;
+        height: 100%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background: rgb(95, 95, 95);
+        -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .header-text {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    #map {
+        width: 100%;
+        height: 400px;
+        background-color: grey;
+    }
+
+    .members {
+        display: none;
+        overflow: hidden;
+        transition: width 0s, height 2s;
+    }
+
+    .locations {
+        display: none;
+
+        overflow: hidden;
+        transition: width 0s, height 2s;
+    }
+
+    .concertDates {
+        display: none;
+
+        overflow: hidden;
+        transition: height 2s;
+
+    }
+
+    .relations {
+        display: none;
+        overflow: hidden;
+        transition: height 2s;
+    }
+
+    .memberHeader:hover~.members {
+        display: block;
+        height: max-content;
+    }
+
+    .locationHeader:hover~.locations {
+        display: block;
+        height: max-content;
+    }
+
+    .conDateHeader:hover~.concertDates {
+        display: block;
+        height: max-content;
+    }
+
+    .relHeader:hover~.relations {
+        display: block;
+        height: max-content;
+    }
+    #map{
+    }
+</style>
+
+<body>
+    <div class="main-menu" align="center">
+        <div class="inner-menu" align="center">
+            <h1><a href="/" class="header-text">Groupie tracker</a></h1>
+            <h3>Find your artists and their locations</h3>
+        </div>
+    </div>
+
+    <div class="conatiner">
+        <div class="wrap">
+            <div class="box one">
+                <h1>{{.Name}}</h1>
+
+                <br />
+                <img src="{{.Image}}" alt="" />
+                <div class="date">
+                    <h4>Creation Date: {{.CreationDate}}</h4>
+                    <h4>First Album: {{.FirstAlbum}}</h4>
+
+
+                    <details>
+                        <summary class="header-text">Members</summary>
+                        {{range $member := .Members}}
+                        <p>{{$member}}</p>
+                        {{end}}
+                    </details>
+                    
+                    <details>
+                        <summary class="header-text">Locations</summary>
+                        {{range $location := .Locs.Locations}}
+                        <p id="location">{{$location}}</p>
+                        {{end}}
+                    </details>
+                    
+
+                    <details>
+                        <summary class="header-text">Concert Dates</summary>
+                        {{range $date := .ConDates.Dates}}
+                        <p>{{$date}}</p>
+                        {{end}}
+                    </details>
+
+
+                    <details>
+                        <summary class="header-text">Concert Dates with Locations</summary>
+                        {{range $city, $dateAndLocation := .Rels.DatesLocations}}
+                        <p>{{$city}}:<br>{{range $innerDate := $dateAndLocation}}{{$innerDate}}<br>{{end}}</p>
+                        {{end}}
+                    </details>
+                    
+
+                    {{range $index, $coord := .Coords}}
+                    <input hidden type="text" class="lat" value={{$coord.Lat}}>
+                    <input hidden type="text" class="lng" value={{$coord.Lng}}>
+                    {{end}}
+                    <br>
+                    <div id="map"></div>
+                    <br><br>
+                    <br><br>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Initialize and add the map
+        function initMap() {
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 2,
+                center: { lat: 0.0, lng: 0.0 }
+            });
+
+
+
+            var lats = document.getElementsByClassName("lat")
+            var lngs = document.getElementsByClassName("lng")
+            var l1 = 0.0;
+            var l2 = 0.0;
+            for (var i = 0; i < lats.length; i++) {
+                l1 = parseFloat(lats[i].value)
+                l2 = parseFloat(lngs[i].value)
+                var marker = new google.maps.Marker({ position: { lat: l1, lng: l2 }, title: "hello" });
+                marker.setMap(map);
+            }
+
+
+        }
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDA6Mwn73DcFZQkNIyC7ji2FiMjPzF2MjU&callback=initMap">
+        </script>
+</body>
+
+</html>
