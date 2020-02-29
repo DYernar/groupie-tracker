@@ -10,8 +10,9 @@
 
     <script>
       function check() {
-        document.getElementById("min").max = document.getElementById("max").value
-        document.getElementById("max").min = document.getElementById("min").value
+        document.getElementById("label1").innerHTML = document.getElementById("min").value
+        document.getElementById("label2").innerHTML = document.getElementById("max").value
+        
 
       }
       function check2() {
@@ -83,18 +84,25 @@
               <p class="filter-head">Number of Members</p>
               <div id="slider"></div>
               <br>
-              <label for="min">min:</label>
-              <input onchange="check()" type="range" min="1" max="10" value="0" class="min" id="min">
-              <input onchange="check()" value=0 type="number" id="min" name="min" step="1" min="0" max="10">
+              <label for="min" id="label1">0</label>
+              <input onchange="check()" type="range" min="0" max="10" value="0" class="min" id="min">
               <br>
               <br>
-              <label for="max">max:</label>
-              <input onchange="check()" value=10 type="number" id="max" name="max" step="1" min="0" max="10">
+              <label for="max" id="label2">10</label>
+              <input onchange="check()" type="range" min="0" max="10" value="10" class="max" id="max">
             </div>
   
             <div class="slidecontainer">
               <p class="filter-head">Location of concerts</p>
+                {{range $element := .Artists}}
+                  {{range $index, $location := $element.Locs.Locations}}
+                  <input type="checkbox" name="location" value={{$location}}>
+                  <label>{{$location}}</label>
+                  <br>
+                  {{end}}
+                {{end}}
             </div>
+
             <input type="submit" value="apply">
           </form>
           
