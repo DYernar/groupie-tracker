@@ -9,7 +9,6 @@ import(
 
 
 
-
 var Option = []string{"no filter", "band/artist", "member", "creation date", "first album", "location"}
 
 

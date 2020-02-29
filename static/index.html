@@ -63,7 +63,7 @@
         <details>
           <summary class="header-text">Filter</summary>
 
-          <form action="/filter" method="GET">
+          <form action="/" method="POST">
             <div class="slidecontainer">
               <p class="filter-head">CreationDate</p>
               <div>
@@ -85,22 +85,26 @@
               <div id="slider"></div>
               <br>
               <label for="min" id="label1">0</label>
-              <input onchange="check()" type="range" min="0" max="10" value="0" class="min" id="min">
+              <input onchange="check()" type="range" min="0" max="10" value="0" class="min" id="min" name="membernum1">
               <br>
               <br>
               <label for="max" id="label2">10</label>
-              <input onchange="check()" type="range" min="0" max="10" value="10" class="max" id="max">
+              <input onchange="check()" type="range" min="0" max="10" value="10" class="max" id="max" name="membernum2">
             </div>
   
             <div class="slidecontainer">
               <p class="filter-head">Location of concerts</p>
-                {{range $element := .Artists}}
-                  {{range $index, $location := $element.Locs.Locations}}
-                  <input type="checkbox" name="location" value={{$location}}>
-                  <label>{{$location}}</label>
-                  <br>
-                  {{end}}
+              
+
+              <table>
+                {{len .Locations}}
+                {{range $index, $location := .Locations}}
+                <td>
+                  <input type="checkbox" name=locations{{$index}} id="locationId" value={{$location}}>
+                  {{$location}}
+                </td>
                 {{end}}
+              </table>
             </div>
 
             <input type="submit" value="apply">
