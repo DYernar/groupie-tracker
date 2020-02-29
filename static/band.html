@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>{{.Name}}</title>
+
 </head>
 <style>
     body {
@@ -286,7 +287,11 @@
         display: block;
         height: max-content;
     }
-    #map{
+    .back{
+        text-decoration: none;
+        color: rgb(132, 133, 106);
+        font-size: 22px;
+        font-weight: 500;
     }
 </style>
 
@@ -297,7 +302,11 @@
             <h3>Find your artists and their locations</h3>
         </div>
     </div>
-
+    <div class="container">
+        <div class="wrap">
+            <a href="/" class="back"><------Back</a>
+        </div>
+    </div>
     <div class="conatiner">
         <div class="wrap">
             <div class="box one">
@@ -345,6 +354,9 @@
                     <input hidden type="text" class="lat" value={{$coord.Lat}}>
                     <input hidden type="text" class="lng" value={{$coord.Lng}}>
                     {{end}}
+                    {{range $location := .Locs.Locations}}
+                        <input hidden type="text" class="title" value={{$location}}>
+                    {{end}}
                     <br>
                     <div id="map"></div>
                     <br><br>
@@ -368,12 +380,13 @@
 
             var lats = document.getElementsByClassName("lat")
             var lngs = document.getElementsByClassName("lng")
+            var locs = document.getElementsByClassName("title")
             var l1 = 0.0;
             var l2 = 0.0;
             for (var i = 0; i < lats.length; i++) {
                 l1 = parseFloat(lats[i].value)
                 l2 = parseFloat(lngs[i].value)
-                var marker = new google.maps.Marker({ position: { lat: l1, lng: l2 }, title: "hello" });
+                var marker = new google.maps.Marker({ position: { lat: l1, lng: l2 }, title: locs[i].value });
                 marker.setMap(map);
             }
 
