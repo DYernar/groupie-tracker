@@ -5,7 +5,7 @@ import(
 	"net/http"
 	"html/template"
 	"time"
-	"strconv"
+	// "strconv"
 )
 
 func mainPage(w http.ResponseWriter, r *http.Request) {
@@ -41,18 +41,18 @@ func mainPage(w http.ResponseWriter, r *http.Request) {
 			searchResult := GetByHint(search, searchType)
 
 
-			creationStart := r.FormValue("cr_start_date")
-			creationEnd := r.FormValue("cr_end_date")
-			faStart := r.FormValue("fa_start_date")
-			faEnd := r.FormValue("fa_end_date")
-			membernum1 := r.FormValue("membernum1")
-			membernum2 := r.FormValue("membernum2")
-			var locationFilter []string
-			for i := 0; i <193; i++ {
-				locationFilter = append(locationFilter, r.FormValue("locations"+strconv.Itoa(i)))
-			}
+			// creationStart := r.FormValue("cr_start_date")
+			// creationEnd := r.FormValue("cr_end_date")
+			// faStart := r.FormValue("fa_start_date")
+			// faEnd := r.FormValue("fa_end_date")
+			// membernum1 := r.FormValue("membernum1")
+			// membernum2 := r.FormValue("membernum2")
+			// var locationFilter []string
+			// for i := 0; i <193; i++ {
+			// 	locationFilter = append(locationFilter, r.FormValue("locations"+strconv.Itoa(i)))
+			// }
 			
-			searchResult=ApplyFilters(fullData, creationEnd, creationStart, faStart, faEnd, membernum1, membernum2)
+			// searchResult=ApplyFilters(fullData, creationEnd, creationStart, faStart, faEnd, membernum1, membernum2)
 			
 			var searchReturn RetVal
 			searchReturn.Artists = searchResult
